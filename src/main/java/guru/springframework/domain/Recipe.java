@@ -1,6 +1,14 @@
 package guru.springframework.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Recipe {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // means this will use the PK column from the DB
+    private Long id;
+
     private String description;
     private Integer prepTime;
     private Integer cookTime;
@@ -10,9 +18,20 @@ public class Recipe {
     private String directions;
     // todo add
     // private Difficulty difficulty;
-    private Byte[] image;
 
+    @Lob // This annotation means that specifies that the database should store the property as Large Object.
+    private Byte[] image; // https://www.baeldung.com/hibernate-lob
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;
