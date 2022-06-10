@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by jt on 6/1/17.
  */
 @Controller
-public class IndexController {
+public class aboutController {
 
-    @RequestMapping({"", "/", "/index"})
-    public String getIndexPage(){
+    @RequestMapping({"/about"})
+    public String getAboutPage(){
 
-        return "index";
+        return "aboutMe";
     }
 }
