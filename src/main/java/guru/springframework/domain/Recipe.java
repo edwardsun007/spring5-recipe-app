@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -21,6 +22,17 @@ public class Recipe {
 
     @Lob // This annotation means that specifies that the database should store the property as Large Object.
     private Byte[] image; // https://www.baeldung.com/hibernate-lob
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
