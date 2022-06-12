@@ -20,6 +20,13 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe; // No cascade here because deletion of ingredient should not delete recipe
 
+    @OneToOne
+    private UnitMeasure uom;
+    /*
+    This is one-direction one to one here: An Ingredient has its own unit of measurement
+    But no unit of measure belong to any ingredient thats why UnitMeasure class doesn't have Ingredient property
+    * */
+
     public Long getId() {
         return id;
     }
@@ -50,5 +57,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitMeasure uom) {
+        this.uom = uom;
     }
 }
