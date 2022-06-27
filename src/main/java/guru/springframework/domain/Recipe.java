@@ -23,6 +23,29 @@ public class Recipe {
     @Lob // This annotation means that specifies that the database should store the property as Large Object.
     private Byte[] image; // https://www.baeldung.com/hibernate-lob
 
+    /*ORDINAL type means that enum values will be saved as Integer in our DB
+    * STRING type means that enum values will be saved as String in our DB
+    *
+    * 1      2      3 for ORDINAL
+    * EASY Medium Hard
+    * now if we change the table after it is created, for ex:
+    * 1      2     3     4
+    * EASY medium bitHard hard
+    * hard changed to 4  but we saved 3 , this will be a bug in our DB
+    *
+    * How ever if we persist them as String, this issue can avoided
+    * */
+    @Enumerated(value=EnumType.STRING)
+    private Difficulty difficulty;
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
 
