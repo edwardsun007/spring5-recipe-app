@@ -18,7 +18,7 @@ public class Recipe {
     private String url;
     private String directions;
     // todo add
-    // private Difficulty difficulty;
+//     private Difficulty difficulty;
 
     @Lob // This annotation means that specifies that the database should store the property as Large Object.
     private Byte[] image; // https://www.baeldung.com/hibernate-lob
