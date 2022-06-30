@@ -60,6 +60,12 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
+    @ManyToMany
+    @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name="recipe_id"), inverseJoinColumns = @JoinColumn(name="category_id") )
+    // for join table, table name convention curclass_otherclass,  joinColumns is the foreign key in the join table for current class
+    // Here by passing the name parameter, we can change the joinTable name and the column name with what we want
+    private Set<Category> categories;
+
     public Long getId() {
         return id;
     }
@@ -138,5 +144,13 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
